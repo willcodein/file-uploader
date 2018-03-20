@@ -1,14 +1,15 @@
 <?php
 
 include('csv.php');
-
-$file = $_POST['file'];
-$csv = file($file);
-$condensed_array = array();
-
 $data = [];
 
-$newCsv = new Csv($csv);
-$data['table'] = $newCsv->data;
+// Get file from post request
+$file = $_POST['file'];
+$csv = file($file);
 
+// Create new instance of CSV object
+$csvInstance = new Csv($csv);
+
+// Pass data to view
+$data['table'] = $csvInstance->data;
 include("index.php");

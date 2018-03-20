@@ -1,5 +1,14 @@
 <?php
 
+/**
+*
+* Convert an array to an csv object
+*
+* @param    array   $csv The array to convert to data and csv file
+* @return   object  the csv object
+*
+*/
+
 class Csv {
   private $data = [];
   private $csv;
@@ -8,7 +17,6 @@ class Csv {
     $this->csv = $this->prepareData($csv);
   }
 
-  // magic method to get data
   public function __get($property) {
     if (property_exists($this, $property)) {
       return $this->$property;
@@ -36,7 +44,7 @@ class Csv {
   }
 
   private function prepareCsv() {
-    $file = fopen("newData.csv","w");
+    $file = fopen("new_data.csv","w");
     foreach ($this->data as $key => $line) {
       $newLine = $key . ',' . $line;
       fputcsv($file, explode(',', $newLine));
